@@ -1,0 +1,12 @@
+{
+    "name": "onepersongroup/hw4",
+    "description": "Hw4 for CS174",
+    "authors": [
+        {
+            "name": "Andre Mak"
+        }
+    ],
+    "require-dev": {
+        "simpletest/simpletest": "^1.1"
+    }
+}
