@@ -1,3 +1,9 @@
+<?php
+namespace onepersongroup\hw4\views;
+require_once 'View.php';
+class landingview extends View{
+    function render($data){
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,3 +27,7 @@ Feb,450,5.0
         </form>
     </body>
 </html>
+<?php
+    }
+}
+?>

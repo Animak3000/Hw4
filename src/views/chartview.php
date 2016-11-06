@@ -1,3 +1,9 @@
+<?php
+namespace onepersongroup\hw4\views;
+require_once 'View.php';
+class chartview extends View{
+    function render($data){
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,3 +13,7 @@
         <h1>XXXXX LineGraph - PasteChart</h1>
     </body>
 </html>
+<?php
+    }
+}
+?>
