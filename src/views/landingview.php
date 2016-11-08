@@ -10,21 +10,22 @@ class landingview extends View{
         <title>PasteChart</title>
         <script type='text/javascript'>
         function validateForm(){
-            var x = document.getElementById('values').value;
-            if (x == null || x == '') {
+            var values = document.getElementById('values').value;
+            if (values == null || values == '') {
                 alert('no coordinates found');
                 return false;
             }
-            /*
-            else if(){
-                alert('coordinates in wrong format');
-                return false;
+            //alert(values); //testing
+            var array = values.split('\n');
+            for (i = 0; i < array.length; i++) {
+                //alert(array[i]); //testing. Reject coordinates if any do not match RegEx format.
+                if (/\w+,\d*,\d*/i.test(array[i]) == false){
+                    alert('coordinates in wrong format');
+                    return false;
+                }
             }
-            */
-            else{
-                alert('coordinates accepted');
-                return true;
-            }
+            alert('coordinates accepted');
+            return true;
         }
         </script>
     </head>
