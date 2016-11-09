@@ -7,7 +7,8 @@ class chartcontroller extends Controller{
     function __construct(){
         $data = array();
         $model = new chartmodel;
-        $data = $model->retrieveGraph($data, $_REQUEST["arg2"]);
+        $data = $model->retrieveGraph($data, $_REQUEST['arg2']);
+        $data['graph'] = $_REQUEST['arg1'];
         $view = new chartview;
         $view->render($data);
     }
