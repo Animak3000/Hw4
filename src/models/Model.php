@@ -2,7 +2,7 @@
 namespace onepersongroup\hw4\models;
 abstract class Model{
     function connectToDB(){
-        $sql = mysqli_connect(SERVERNAME, USERNAME, PASSWORD, DB);
+        $sql = mysqli_connect(SERVERNAME, USERNAME, PASSWORD);
         return $sql;
     }
 }

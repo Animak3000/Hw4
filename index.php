@@ -8,6 +8,8 @@ require_once 'vendor/autoload.php';
 
 require_once '/src/controllers/landcontroller.php';
 require_once '/src/controllers/chartcontroller.php';
+require_once '/src/models/landmodel.php';
+require_once '/src/models/chartmodel.php';
 require_once '/src/views/landingview.php';
 require_once '/src/views/chartview.php';
 

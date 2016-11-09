@@ -7,10 +7,10 @@ class chartview extends View{
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>XXXXX LineGraph - PasteChart</title>
+        <title><?php echo $data['hash'] ?> LineGraph - PasteChart</title>
     </head>
     <body>
-        <h1>XXXXX LineGraph - PasteChart</h1>
+        <h1><?php echo $data['hash'] ?> LineGraph - PasteChart</h1>
         <p>Share your chart and data at the URLs below:</p>
         <p>As a LineGraph:<br>
         <?php echo BASE_URL ?>/?c=chart&a=show&arg1=LineGraph&arg2=XXXXX</p>

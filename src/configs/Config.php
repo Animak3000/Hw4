@@ -7,6 +7,6 @@ define ("BASE_URL", "http://localhost/Hw4");
 define ("SERVERNAME", "localhost");
 define ("USERNAME", "root");
 define ("PASSWORD", "Wlipa3135");
-define ("DB", "hw3");
+define ("DB", "hw4");
 ?>
 
