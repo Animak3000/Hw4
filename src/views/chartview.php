@@ -1,6 +1,5 @@
 <?php
 namespace onepersongroup\hw4\views;
-require_once 'View.php';
 class chartview extends View{
     function render($data){
 ?>

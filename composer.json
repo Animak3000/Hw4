@@ -8,5 +8,14 @@
     ],
     "require-dev": {
         "simpletest/simpletest": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "onepersongroup\\hw4\\": "",
+            "onepersongroup\\hw4\\configs\\": "src/configs/",
+            "onepersongroup\\hw4\\controllers\\": "src/controllers/",
+            "onepersongroup\\hw4\\models\\": "src/models/",
+            "onepersongroup\\hw4\\views\\": "src/views/"
+    	}
     }
 }

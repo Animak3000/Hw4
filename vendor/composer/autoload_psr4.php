@@ -6,4 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'onepersongroup\\hw4\\views\\' => array($baseDir . '/src/views'),
+    'onepersongroup\\hw4\\models\\' => array($baseDir . '/src/models'),
+    'onepersongroup\\hw4\\controllers\\' => array($baseDir . '/src/controllers'),
+    'onepersongroup\\hw4\\configs\\' => array($baseDir . '/src/configs'),
+    'onepersongroup\\hw4\\' => array($baseDir . '/'),
 );

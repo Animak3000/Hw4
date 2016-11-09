@@ -1,6 +1,5 @@
 <?php
 namespace onepersongroup\hw4\models;
-require_once 'Model.php';
 class chartmodel extends Model{
     function retrieveGraph($data, $hash){
         $sql = mysqli_connect(SERVERNAME, USERNAME, PASSWORD, DB);

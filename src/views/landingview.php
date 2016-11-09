@@ -1,6 +1,5 @@
 <?php
 namespace onepersongroup\hw4\views;
-require_once 'View.php';
 class landingview extends View{
     function render($data){
 ?>

@@ -1,6 +1,5 @@
 <?php
 namespace onepersongroup\hw4\models;
-require_once 'Model.php';
 class landmodel extends Model{
     function addToDB($sql, $hash, $title, $data){
         $db = DB;

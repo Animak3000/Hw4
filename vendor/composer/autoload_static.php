@@ -6,6 +6,40 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit7ffd4ac85993882516ea8eb99e82b2c3
 {
+    public static $prefixLengthsPsr4 = array (
+        'o' => 
+        array (
+            'onepersongroup\\hw4\\views\\' => 25,
+            'onepersongroup\\hw4\\models\\' => 26,
+            'onepersongroup\\hw4\\controllers\\' => 31,
+            'onepersongroup\\hw4\\configs\\' => 27,
+            'onepersongroup\\hw4\\' => 19,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'onepersongroup\\hw4\\views\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/views',
+        ),
+        'onepersongroup\\hw4\\models\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/models',
+        ),
+        'onepersongroup\\hw4\\controllers\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/controllers',
+        ),
+        'onepersongroup\\hw4\\configs\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/configs',
+        ),
+        'onepersongroup\\hw4\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/',
+        ),
+    );
+
     public static $classMap = array (
         'AllTests' => __DIR__ . '/..' . '/simpletest/simpletest/test/all_tests.php',
         'AnotherOldAbstractClass' => __DIR__ . '/..' . '/simpletest/simpletest/test/reflection_php5_test.php',
@@ -439,6 +473,8 @@ class ComposerStaticInit7ffd4ac85993882516ea8eb99e82b2c3
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit7ffd4ac85993882516ea8eb99e82b2c3::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit7ffd4ac85993882516ea8eb99e82b2c3::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit7ffd4ac85993882516ea8eb99e82b2c3::$classMap;
 
         }, null, ClassLoader::class);
