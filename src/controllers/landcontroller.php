@@ -12,7 +12,7 @@ class landcontroller extends Controller{
             $data = filter_input(INPUT_GET, "values", FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_AMP);
             $hash = hash('md5', $data);
             $model->addToDB($sql, $hash, $title, $data);
-            header("Location: " . BASE_URL . "/?c=chart&a=show&arg1=LineGraph&arg2=" . $hash);     
+            header("Location: " . BASE_URL . "/?c=chart&a=show&arg1=LineGraph&arg2=" . $hash);
         }
         $view = new landingview;
         $view->render($data);
