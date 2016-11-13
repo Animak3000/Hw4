@@ -9,6 +9,7 @@ class ComposerStaticInit7ffd4ac85993882516ea8eb99e82b2c3
     public static $prefixLengthsPsr4 = array (
         'o' => 
         array (
+            'onepersongroup\\hw4\\views\\elements\\' => 34,
             'onepersongroup\\hw4\\views\\' => 25,
             'onepersongroup\\hw4\\models\\' => 26,
             'onepersongroup\\hw4\\controllers\\' => 31,
@@ -18,6 +19,10 @@ class ComposerStaticInit7ffd4ac85993882516ea8eb99e82b2c3
     );
 
     public static $prefixDirsPsr4 = array (
+        'onepersongroup\\hw4\\views\\elements\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/views/elements',
+        ),
         'onepersongroup\\hw4\\views\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/views',
