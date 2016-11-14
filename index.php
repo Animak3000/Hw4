@@ -6,6 +6,7 @@ require_once '/src/configs/Config.php';
 // load composer
 require_once 'vendor/autoload.php';
 
+use \onepersongroup\hw4\configs\Config;
 use \onepersongroup\hw4\controllers\landcontroller;
 use \onepersongroup\hw4\controllers\chartcontroller;
 
