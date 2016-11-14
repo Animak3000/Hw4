@@ -6,7 +6,7 @@ define ("BASE_URL", "http://localhost/Hw4");
 //MySql Constants. Edit when needed.
 define ("SERVERNAME", "localhost");
 define ("USERNAME", "root");
-define ("PASSWORD", "Wlipa3135");
+define ("PASSWORD", "123456qwerty");
 define ("DB", "hw4");
 ?>
 
