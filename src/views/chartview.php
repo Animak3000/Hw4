@@ -16,17 +16,17 @@ class chartview extends View{
         <?php $display->render($data); ?>
         <p>Share your chart and data at the URLs below:</p>
         <p>As a LineGraph:<br>
-        <?php echo BASE_URL ?>/?c=chart&a=show&arg1=LineGraph&arg2=XXXXX</p>
+        <a href="<?php echo BASE_URL ?>/?c=chart&a=show&arg1=LineGraph&arg2=<?php echo $data['hash'] ?>"><?php echo BASE_URL ?>/?c=chart&a=show&arg1=LineGraph&arg2=<?php echo $data['hash'] ?></a></p>
         <p>As a PointGraph:<br>
-        <?php echo BASE_URL ?>/?c=chart&a=show&arg1=PointGraph&arg2=XXXXX</p>
+        <a href="<?php echo BASE_URL ?>/?c=chart&a=show&arg1=PointGraph&arg2=<?php echo $data['hash'] ?>"><?php echo BASE_URL ?>/?c=chart&a=show&arg1=PointGraph&arg2=<?php echo $data['hash'] ?></a></p>
         <p>As a Histogram:<br>
-        <?php echo BASE_URL ?>/?c=chart&a=show&arg1=Histogram&arg2=XXXXX</p>
+        <a href="<?php echo BASE_URL ?>/?c=chart&a=show&arg1=Histogram&arg2=<?php echo $data['hash'] ?>"><?php echo BASE_URL ?>/?c=chart&a=show&arg1=Histogram&arg2=<?php echo $data['hash'] ?></a></p>
         <p>As XML data:<br>
-        <?php echo BASE_URL ?>/?c=chart&a=show&arg1=xml&arg2=XXXXX</p>
+        <a href="<?php echo BASE_URL ?>/?c=chart&a=show&arg1=xml&arg2=<?php echo $data['hash'] ?>"><?php echo BASE_URL ?>/?c=chart&a=show&arg1=xml&arg2=<?php echo $data['hash'] ?></a></p>
         <p>As JSON data:<br>
-        <?php echo BASE_URL ?>/?c=chart&a=show&arg1=json&arg2=XXXXX</p>
+        <a href="<?php echo BASE_URL ?>/?c=chart&a=show&arg1=json&arg2=<?php echo $data['hash'] ?>"><?php echo BASE_URL ?>/?c=chart&a=show&arg1=json&arg2=<?php echo $data['hash'] ?></a></p>
         <p>As JSONP data:<br>
-        <?php echo BASE_URL ?>/?c=chart&a=show&arg1=jsonp&arg2=XXXXX&arg3=javascript_callback</p>
+        <a href="<?php echo BASE_URL ?>/?c=chart&a=show&arg1=jsonp&arg2=<?php echo $data['hash'] ?>&arg3=javascript_callback"><?php echo BASE_URL ?>/?c=chart&a=show&arg1=jsonp&arg2=<?php echo $data['hash'] ?>&arg3=javascript_callback</a></p>
     </body>
 </html>
 <?php
