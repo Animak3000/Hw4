@@ -11,15 +11,15 @@ class landingview extends View{
         function validateForm(){
             var values = document.getElementById('values').value;
             if (values == null || values == '') {
-                alert('no coordinates found');
+                alert('Error: Empty');
                 return false;
             }
             //alert(values); //testing
             var array = values.split('\n');
             for (i = 0; i < array.length; i++) {
                 //alert(array[i]); //testing. Reject coordinates if any do not match RegEx format.
-                if (/\w+,\d*,\d*/i.test(array[i]) == false){
-                    alert('coordinates in wrong format');
+                if (/\w+,\d*,\d*,\d*,\d*/i.test(array[i]) == false){
+                    alert('Error: Coordinates in wrong format');
                     return false;
                 }
             }
@@ -36,8 +36,8 @@ class landingview extends View{
             <input type='text' id='title' name='title'>
         </div><br>
         <div>
-            <textarea id='values' name='values' rows='50' cols='80' placeholder='Jan,600,5.4
-Feb,450,5.0
+            <textarea id='values' name='values' rows='50' cols='80' placeholder='Jan,6,4,3,4,3
+Feb,4,8,4,4,5
 ...'></textarea>
         </div>
         <div>
