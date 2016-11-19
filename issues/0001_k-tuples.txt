@@ -1,0 +1,3 @@
+K-Tuples
+
+Make chart.js work with k-tuples instead of 2.
