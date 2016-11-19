@@ -11,15 +11,31 @@ class landingview extends View{
         function validateForm(){
             var values = document.getElementById('values').value;
             if (values == null || values == '') {
-                alert('Error: Empty');
+                document.getElementById("message").innerHTML = 'Error: Empty';
                 return false;
             }
-            //alert(values); //testing
-            var array = values.split('\n');
-            for (i = 0; i < array.length; i++) {
-                //alert(array[i]); //testing. Reject coordinates if any do not match RegEx format.
-                if (/\w+,\d*,\d*,\d*,\d*/i.test(array[i]) == false){
-                    alert('Error: Coordinates in wrong format');
+            var lines = values.split('\n');
+            if (lines.length > 50){
+                document.getElementById("message").innerHTML = 'Error: More than fifty lines';
+                return false;
+            }
+            for (var i = 0; i < lines.length; i++){
+                if (lines[i].length > 80){
+                    document.getElementById("message").innerHTML = 'Error: A line has more than eighty characters';
+                    return false;
+                }
+            }
+            for (i = 0; i < lines.length; i++) {
+                var coordinates = lines[i].split(",");
+                if (coordinates.length < 2 || coordinates.length > 6){
+                    document.getElementById("message").innerHTML = 'Error: Coordinates must be between 1 and 5';
+                    return false;
+                }
+            }
+            for (var i = 0; i < lines.length; i++){
+                var coordinates = lines[i].split(",");
+                if (!coordinates[0]){
+                    document.getElementById("message").innerHTML = 'Error: First coordinate must be nonempty';
                     return false;
                 }
             }
@@ -36,7 +52,7 @@ class landingview extends View{
             <input type='text' id='title' name='title'>
         </div><br>
         <div>
-            <textarea id='values' name='values' rows='50' cols='80' placeholder='Jan,6,4,3,4,3
+            <textarea id='values' name='values' rows='10' cols='80' placeholder='Jan,6,4,3,4,3
 Feb,4,8,4,4,5
 ...'></textarea>
         </div>
@@ -44,6 +60,7 @@ Feb,4,8,4,4,5
             <button type='submit'>Share</button>
         </div>
         </form>
+        <p id="message"></p>
     </body>
 </html>
 <?php
