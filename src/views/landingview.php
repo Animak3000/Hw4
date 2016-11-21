@@ -49,12 +49,12 @@ class landingview extends View{
         <p>Share your data in charts!</p>
         <form onsubmit="return validateForm()">
         <div><label for='chart'>Chart Title</label>
-            <input type='text' id='title' name='title'>
+            <input type='text' id='title' name='title' value=<?php echo $data['title']?>>
         </div><br>
         <div>
             <textarea id='values' name='values' rows='10' cols='80' placeholder='Jan,6,4,3,4,3
 Feb,4,8,4,4,5
-...'></textarea>
+...'><?php echo $data['values']?></textarea>
         </div>
         <div>
             <button type='submit'>Share</button>

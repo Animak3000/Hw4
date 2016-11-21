@@ -12,7 +12,7 @@ class chartview extends View{
     </head>
     <body>
         <h1><?php echo $data['hash'] ?> <?php echo $data['graph'] ?> - PasteChart</h1>
-        <div id="board"> </div>
+        <div id="display"> </div>
         <?php $display->render($data); ?>
         <p>Share your chart and data at the URLs below:</p>
         <p>As a LineGraph:<br>

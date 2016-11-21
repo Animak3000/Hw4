@@ -5,6 +5,8 @@ use \onepersongroup\hw4\views\landingview;
 class landcontroller extends Controller{
     function __construct(){
         $data = array();
+        $data['title'] = '';
+        $data['values'] = '';
         if(isset($_REQUEST["title"], $_REQUEST["values"])){
             $title = filter_input(INPUT_GET, "title", FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_AMP);
             $values = filter_input(INPUT_GET, "values", FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_AMP);
@@ -36,7 +38,7 @@ class landcontroller extends Controller{
                 return false;
             }
             else if (count($coo) < 2 || count($coo) > 6){
-                echo 'Error: Coordinates must be between 1 and 5.';
+                echo 'Error: Coordinates must be between 1 and 5';
                 return false;
             }
             else if (empty(reset($coo))){
