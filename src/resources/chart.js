@@ -288,6 +288,25 @@ function Chart(chart_id, data)
         }
 
     }
+<<<<<<< HEAD
+=======
+    p.drawxml = function()
+    {
+        var parser = new DOMParser();
+        xmlDoc = parser.parseFromString(result,"text/xml");
+    
+        title = xmlDoc.getElementsByTagName("title");
+        var label=[];
+        var value=[];
+        var z;
+        for (var i = 0; i<title.length-1; i++){
+            z = title[i];
+            title[i] = z.getElementsByTagName("title")[0].childNodes[0].nodeValue.trim();
+            value[i] = z.getElementsByTagName("values")[0].childNodes[0].nodeValue;
+        }
+    }
+}
+>>>>>>> 7189fdfd4f603bcc194633e67445c4bb0f3b701b
 
         /**requestCallback 
     @param - StringUrl string with url that is going to be xmlhttp

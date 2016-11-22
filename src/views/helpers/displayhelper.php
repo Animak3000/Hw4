@@ -49,7 +49,6 @@ class displayhelper extends Helper{
             </script><?php
         }
         else if($data['graph'] == 'xml'){?>
-            <script type="text/javascript" scr="./scr/resources/chart.js"></script>
             <script type="text/javascript">
             var unparsedData = '<?php echo $values;?>';
             var parsedData = JSON.parse(unparsedData);
@@ -58,13 +57,38 @@ class displayhelper extends Helper{
                     parsedData[key][value] = parseFloat(parsedData[key][value]);
                 }
             }
-            var title = <?php echo json_encode($data['title']); ?>;
-            graph = new Chart("display", parsedData, {"title":title, "type":"xml"});
-            graph.draw();
+
+            document.write('<?php echo '&lt;Chart Title="'; echo $data['title']; echo'"&gt'; echo '<br>'?>');
+	    for (var key in parsedData) {
+		document.write('&ltValue Label="'+ key +'"&gt<br>');
+   		for(var value in parsedData[key]){
+        	    document.write('&ltValue&gt'+ parsedData[key][value] +'&lt/Value&gt'+'<br>');
+   		}
+   		document.write('&lt/Value&gt<br>');
+	    }
+	    document.write('<?php echo '&lt;/Chart&gt'?>');
             </script><?php
 
         }
-        else if($data['graph'] == 'json'){
+        else if($data['graph'] == 'json'){?>
+            <script type="text/javascript">
+                var unparsedData = '<?php echo $values;?>';
+                var parsedData = JSON.parse(unparsedData);
+                for (var key in parsedData){
+                    for(var value in parsedData[key]){
+                        parsedData[key][value] = parseFloat(parsedData[key][value]);
+                    }
+                }
+            document.write('<?php echo '&#123;&ldquo;Chart Title&rdquo;:&sbquo;"'; echo $data['title];");
+            for (var key in parsedData){
+                document.write('&ldquoValue Label&rdquo;:"'+ key );
+                for(var value in parsedData[key]){
+                    document.write('&ldquoValue&rdquo'+ parsedData[key][value]);
+        }
+                </script><?php
+
+            }
+
             
         }
         else if($data['graph'] == 'jsonp'){
