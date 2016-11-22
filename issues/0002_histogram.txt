@@ -1,3 +1,7 @@
 Histogram
 
 Make chart.js draw a histogram.
+
+Assigned to: Andre
+
+Status: Completed

@@ -14,8 +14,8 @@ class displayhelper extends Helper{
                 }
             }
             var title = <?php echo json_encode($data['title']); ?>;
-            graph = new Chart("display", parsedData, {"title":title});
-            graph.draw("LineGraph");
+            graph = new Chart("display", parsedData, {"title":title, "type":"LineGraph"});
+            graph.draw();
             </script><?php
         }
         else if($data['graph'] == 'PointGraph'){?>
@@ -29,8 +29,8 @@ class displayhelper extends Helper{
                 }
             }
             var title = <?php echo json_encode($data['title']); ?>;
-            graph = new Chart("display", parsedData, {"title":title});
-            graph.draw("PointGraph");
+            graph = new Chart("display", parsedData, {"title":title, "type":"PointGraph"});
+            graph.draw();
             </script><?php
         }
         else if($data['graph'] == 'Histogram'){?>
@@ -44,8 +44,8 @@ class displayhelper extends Helper{
                 }
             }
             var title = <?php echo json_encode($data['title']); ?>;
-            graph = new Chart("display", parsedData, {"title":title});
-            graph.draw("Histogram");
+            graph = new Chart("display", parsedData, {"title":title, "type":"Histogram"});
+            graph.draw();
             </script><?php
         }
         else if($data['graph'] == 'xml'){

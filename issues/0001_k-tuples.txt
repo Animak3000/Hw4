@@ -1,3 +1,7 @@
 K-Tuples
 
 Make chart.js work with k-tuples instead of 2.
+
+Assigned to: Andre
+
+Status: Completed

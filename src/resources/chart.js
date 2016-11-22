@@ -31,8 +31,8 @@ function Chart(chart_id, data)
         'data_color' : 'rgb(0,0,255)', //color used to draw grah
         'height' : 500, //height of area to draw into in pixels
         'line_width' : 1, // width of line in line graph
-        'x_padding' : 50, //x-distance left side of canvas tag to y-axis
-        'y_padding' : 50, //y-distance bottom of canvas tag to x-axis
+        'x_padding' : 30, //x-distance left side of canvas tag to y-axis
+        'y_padding' : 30, //y-distance bottom of canvas tag to x-axis
         'point_radius' : 3, //radius of points that are plot in point graph
         'tick_length' : 10, // length of tick marks along axes
         'ticks_y' : 5, // number of tick marks to use for the y axis
@@ -43,7 +43,7 @@ function Chart(chart_id, data)
         'type' : 'LineGraph', // currently, can be either a LineGraph or
             //PointGraph
         'width' : 500, // width of area to draw into in pixels
-        'bar_width' : 10, // width of bars in histogram
+        'bar_width' : 5, // width of bars in histogram
         'bars_x' : 5 // number of bars to use for the x axis
     };
     for (var property_key in property_defaults) {
