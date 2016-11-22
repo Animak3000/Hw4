@@ -61,6 +61,12 @@ Feb,4,8,4,4,5
         </div>
         </form>
         <p id="message"></p>
+        <?php
+        if (isset($data['message'])) {?>
+            <script type="text/javascript">
+                document.getElementById("message").innerHTML = "<?php echo $data['message']; ?>";
+            </script><?php
+        }?>
     </body>
 </html>
 <?php

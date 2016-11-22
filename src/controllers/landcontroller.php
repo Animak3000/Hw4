@@ -7,6 +7,7 @@ class landcontroller extends Controller{
         $data = array();
         $data['title'] = '';
         $data['values'] = '';
+        $_SESSION['message'] = '';
         if(isset($_REQUEST["title"], $_REQUEST["values"])){
             $title = filter_input(INPUT_GET, "title", FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_AMP);
             $values = filter_input(INPUT_GET, "values", FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_AMP);
@@ -20,6 +21,7 @@ class landcontroller extends Controller{
             else{
                 $data['title'] = $title;
                 $data['values'] = $values;
+                $data['message'] = $_SESSION['message'];
             }
         }
         $view = new landingview;
@@ -28,21 +30,21 @@ class landcontroller extends Controller{
     function checkForm($title, $values){
         $lines = explode("\n", $values);
         if (count($lines) > 50){
-            echo 'Error: More than fifty lines';
+            $_SESSION['message'] = 'Error: More than fifty lines';
             return false;
         }
         foreach ($lines as $line){
             $coo = explode(",", $line);
             if (strlen($line) > 80){
-                echo 'Error: A line has more than eighty characters';
+                $_SESSION['message'] = 'Error: A line has more than eighty characters';
                 return false;
             }
             else if (count($coo) < 2 || count($coo) > 6){
-                echo 'Error: Coordinates must be between 1 and 5';
+                $_SESSION['message'] = 'Error: Coordinates must be between 1 and 5';
                 return false;
             }
             else if (empty(reset($coo))){
-                echo 'Error: First coordinate must be nonempty';
+                $_SESSION['message'] = 'Error: First coordinate must be nonempty';
                 return false;
             }
         }
