@@ -42,7 +42,9 @@ function Chart(chart_id, data)
             // CSS styles to apply to title text
         'type' : 'LineGraph', // currently, can be either a LineGraph or
             //PointGraph
-        'width' : 500 //width of area to draw into in pixels
+        'width' : 500, // width of area to draw into in pixels
+        'bar_width' : 10, // width of bars in histogram
+        'bars_x' : 5 // number of bars to use for the x axis
     };
     for (var property_key in property_defaults) {
         if (typeof properties[property_key] !== 'undefined') {
@@ -70,7 +72,14 @@ function Chart(chart_id, data)
      */
     p.draw = function()
     {
-        self['draw' + self.type]();
+        if(self.type == "PointGraph"){
+            var length = Object.keys(data)[0].length;
+            for(i = 0; i<=length+1; i++){
+              self.drawPointGraph(i);
+            }
+        }else{
+            self['draw' + self.type]();
+        }
     }
     /**
      * Used to store in fields the min and max y values as well as the start
@@ -84,16 +93,18 @@ function Chart(chart_id, data)
         self.end;
         var key;
         for (key in data) {
-            if (self.min_value === null) {
-                self.min_value = data[key];
-                self.max_value = data[key];
-                self.start = key;
-            }
-            if (data[key] < self.min_value) {
-                self.min_value = data[key];
-            }
-            if (data[key] > self.max_value) {
-                self.max_value = data[key];
+            for(index in data[key]){
+                if (self.min_value == null) {
+                    self.min_value = data[key][index];
+                    self.max_value = data[key][index];
+                    self.start = key;
+                }
+                if (data[key][index] < self.min_value) {
+                    self.min_value = data[key][index];
+                }
+                if (data[key][index] > self.max_value) {
+                    self.max_value = data[key][index];
+                }
             }
         }
         self.end = key;
@@ -121,7 +132,11 @@ function Chart(chart_id, data)
         c.beginPath();
         c.moveTo(self.x_padding - self.tick_length,
             self.height - self.y_padding);
-        c.lineTo(self.width - self.x_padding,  height);  // x axis
+        if (self.type == "Histogram") {
+            c.lineTo(self.width + self.bar_width*self.bars_x,  height);  // x axis
+        } else {
+            c.lineTo(self.width - self.x_padding,  height);  // x axis
+        }
         c.stroke();
         c.beginPath();
         c.moveTo(self.x_padding, self.tick_length);
@@ -149,7 +164,11 @@ function Chart(chart_id, data)
         // Draw x ticks and values
         var dx = (self.width - 2 * self.x_padding) /
             (Object.keys(data).length - 1);
-        var x = self.x_padding;
+        if (self.type == "Histogram") {
+            var x = self.x_padding + (self.bar_width*self.bars_x)/2;
+        } else {
+            var x = self.x_padding;
+        }
         for (key in data) {
             c.font = self.tick_font_size + "px serif";
             c.fillText(key, x - self.tick_font_size/2 * (key.length - 0.5), 
@@ -159,13 +178,17 @@ function Chart(chart_id, data)
             c.moveTo(x, self.height - self.y_padding + self.tick_length);
             c.lineTo(x, self.height - self.y_padding);
             c.stroke();
-            x += dx;
+            if (self.type == "Histogram") {
+                x += dx - self.bar_width/self.bars_x;
+            } else {
+                x += dx;
+            }
         }
     }
     /**
      * Draws a chart consisting of just x-y plots of points in data.
      */
-    p.drawPointGraph = function()
+    p.drawPointGraph = function(n)
     {
         self.initMinMaxRange();
         self.renderAxes();
@@ -177,9 +200,8 @@ function Chart(chart_id, data)
         c.fillStyle = self.data_color;
         var height = self.height - self.y_padding - self.tick_length;
         var x = self.x_padding;
-        for (key in data) {
-            y = self.tick_length + height *
-                (1 - (data[key] - self.min_value)/self.range);
+        for (key in data){
+            y = self.tick_length + height * (1 - (data[key][n] - self.min_value)/self.range);
             self.plotPoint(x, y);
             x += dx;
         }
@@ -190,21 +212,57 @@ function Chart(chart_id, data)
      */
     p.drawLineGraph = function()
     {
-        self.drawPointGraph();
+        var length = Object.keys(data)[0].length;
+        for(i = 0; i<=length+1; i++){
+            self.drawPointGraph(i);
+            var c = context;
+            c.beginPath();
+            var x = self.x_padding;
+            var dx = (self.width - 2*self.x_padding) / (Object.keys(data).length - 1);
+            var height = self.height - self.y_padding  - self.tick_length;
+            c.moveTo(x, self.tick_length + height * (1 - (data[self.start] - self.min_value)/self.range));
+            for (key in data){
+                y = self.tick_length + height * (1 - (data[key][i] - self.min_value)/self.range);
+                c.lineTo(x, y);
+                x += dx;
+            }
+            c.stroke();
+        }
+    }
+    /**
+    *Draws a histogram
+    */
+    p.drawHistogram = function()
+    {
+        self.initMinMaxRange();
+        self.renderAxes();
+        var colors = [];
+        for(i = 0; i < data[key].length; i++){
+            colors[i] = self.data_color;
+        }
         var c = context;
         c.beginPath();
-        var x = self.x_padding;
-        var dx =  (self.width - 2*self.x_padding) /
+        var dx = (self.width - 2 * self.x_padding) /
             (Object.keys(data).length - 1);
-        var height = self.height - self.y_padding  - self.tick_length;
-        c.moveTo(x, self.tick_length + height * (1 -
-            (data[self.start] - self.min_value)/self.range));
+        var x = self.x_padding;
+        var height = self.height - self.y_padding;
         for (key in data) {
-            y = self.tick_length + height * 
-                (1 - (data[key] - self.min_value)/self.range);
-            c.lineTo(x, y);
+            var colori = 0;
+            for(index in data[key]){
+                y = height * (1 - (data[key][index] - self.min_value) / self.range) + self.tick_length;
+                c.fillStyle = colors[colori];
+                if(self.min_value != data[key][index]){
+                    c.fillRect(x,height,self.bar_width,y-height);
+                }
+                else{
+                    c.fillRect(x,height,self.bar_width,1);
+                }
+                x = x + self.bar_width;
+                colori++;
+            }
+            x = x - self.bar_width * 5 - (self.bar_width / (data[key].length));
             x += dx;
         }
-        c.stroke();
+
     }
 }
