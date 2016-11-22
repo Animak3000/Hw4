@@ -31,8 +31,8 @@ function Chart(chart_id, data)
         'data_color' : 'rgb(0,0,255)', //color used to draw grah
         'height' : 500, //height of area to draw into in pixels
         'line_width' : 1, // width of line in line graph
-        'x_padding' : 30, //x-distance left side of canvas tag to y-axis
-        'y_padding' : 30, //y-distance bottom of canvas tag to x-axis
+        'x_padding' : 50, //x-distance left side of canvas tag to y-axis
+        'y_padding' : 50, //y-distance bottom of canvas tag to x-axis
         'point_radius' : 3, //radius of points that are plot in point graph
         'tick_length' : 10, // length of tick marks along axes
         'ticks_y' : 5, // number of tick marks to use for the y axis
@@ -186,6 +186,27 @@ function Chart(chart_id, data)
         }
     }
     /**
+     * Colors stroke and fill
+     */
+    p.color = function(n)
+    {
+        if (n == 0){
+            return '#FF0000';
+        }
+        if (n == 1){
+            return '#FFFF00';
+        }
+        if (n == 2){
+            return '#00FF00';
+        }
+        if (n == 3){
+            return '#0000FF';
+        }
+        if (n == 4){
+            return '#FF00FF';
+        }
+    }
+    /**
      * Draws a chart consisting of just x-y plots of points in data.
      */
     p.drawPointGraph = function(n)
@@ -205,6 +226,8 @@ function Chart(chart_id, data)
             self.plotPoint(x, y);
             x += dx;
         }
+        c.strokeStyle = self.color(n);
+        c.fillStyle = self.color(n);
     }
     /**
      * Draws a chart consisting of x-y plots of points in data, each adjacent
@@ -238,7 +261,7 @@ function Chart(chart_id, data)
         self.renderAxes();
         var colors = [];
         for(i = 0; i < data[key].length; i++){
-            colors[i] = self.data_color;
+            colors[i] = p.color(i);
         }
         var c = context;
         c.beginPath();
