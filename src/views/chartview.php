@@ -1,9 +1,9 @@
 <?php
 namespace onepersongroup\hw4\views;
-use \onepersongroup\hw4\views\elements\displayelement;
+use \onepersongroup\hw4\views\helpers\displayhelper;
 class chartview extends View{
     function render($data){
-        $display = new displayelement;
+        $display = new displayhelper;
 ?>
 <!DOCTYPE html>
 <html lang="en">

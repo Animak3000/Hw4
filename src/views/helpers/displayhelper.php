@@ -1,6 +1,6 @@
 <?php
-namespace onepersongroup\hw4\views\elements;
-class displayelement extends Element{
+namespace onepersongroup\hw4\views\helpers;
+class displayhelper extends Helper{
     function render($data){
         $values = json_encode($data['data']);
         if($data['graph'] == 'LineGraph'){?>
