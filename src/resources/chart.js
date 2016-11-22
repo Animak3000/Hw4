@@ -289,3 +289,43 @@ function Chart(chart_id, data)
 
     }
 }
+
+/**requestCallback 
+@param - StringUrl string with url that is going to be xmlhttp
+send the responseText to domParsing function to process as XML doc
+*/
+
+function requestCallback(stringUrl){
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET",stringUrl, true);
+    xmlhttp.send();
+    result = "";
+    xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            result = xmlhttp.responseText;
+            result = result.replace(/and|the|&|&amp;#32;|&ndash;|&rdquo;|&ldquo;|&eacute;|&acirc;|&nbsp;|&mdash;|&euro;|&hellip;|&rsquo;/ig, ' ');
+            
+            document.getElementById('XMLResult').innerHTML = result;
+            domParsing(result);
+            }
+    };
+}
+/**domParsing
+@param - result - responseText string from requestCallback
+uses DomParser to parse thru the string and create xml document
+separated by chart title, label, value */
+
+function domParsing(result){
+    var parser = new DOMParser();
+    xmlDoc = parser.parseFromString(result,"text/xml");
+    
+    title = xmlDoc.getElementsByTagName("title");
+    var label=[];
+    var value=[];
+    var z;
+    for (var i = 0; i<title.length-1; i++){
+        z = title[i];
+        title[i] = z.getElementsByTagName("title")[0].childNodes[0].nodeValue.trim();
+        value[i] = z.getElementsByTagName("pubDate")[0].childNodes[0].nodeValue;
+    }
+}
