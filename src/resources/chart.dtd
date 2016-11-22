@@ -2,5 +2,5 @@
 <!ELEMENT chart (label+)>
   <!ATTLIST chart title CDATA #REQUIRED>
 <!ELEMENT label (value+)>
-  <!ATTLIST label text CDATA #REQUIRED>
+  <!ATTLIST label title CDATA #REQUIRED>
 <!ELEMENT value (#PCDATA)>

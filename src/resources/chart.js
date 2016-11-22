@@ -288,6 +288,21 @@ function Chart(chart_id, data)
         }
 
     }
+    p.drawxml = function()
+    {
+        var parser = new DOMParser();
+        xmlDoc = parser.parseFromString(result,"text/xml");
+    
+        title = xmlDoc.getElementsByTagName("title");
+        var label=[];
+        var value=[];
+        var z;
+        for (var i = 0; i<title.length-1; i++){
+            z = title[i];
+            title[i] = z.getElementsByTagName("title")[0].childNodes[0].nodeValue.trim();
+            value[i] = z.getElementsByTagName("values")[0].childNodes[0].nodeValue;
+        }
+    }
 }
 
 /**requestCallback 
